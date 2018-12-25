@@ -46,6 +46,17 @@ resource "azurerm_network_security_group" "mycelnsg"{
         destination_port_range      ="3389"
         source_address_prefix       ="*"
         destination_address_prefix  ="*"
+    } 
+    security_rule{
+        name                        ="HTTP"
+        priority                    ="865"
+        direction                   ="Inbound"
+        access                      ="allow"
+        protocol                    ="TCP"
+        source_port_range           ="*"
+        destination_port_range      ="8080"
+        source_address_prefix       ="*"
+        destination_address_prefix  ="*"
     }
     
     tags{
