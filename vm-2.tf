@@ -96,6 +96,13 @@ resource "azurerm_virtual_machine" "mycelvm-2" {
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
+  storage_data_disk {
+    name          = "datadisk1"
+    vhd_uri       = "${local.storage_account_base_uri}/datadisk1.vhd"
+    disk_size_gb  = "1023"
+    create_option = "Empty"
+    lun           = 0
+  }
 
     storage_image_reference {
         publisher = "MicrosoftWindowsDesktop"
