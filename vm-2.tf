@@ -43,7 +43,7 @@ resource "azurerm_network_security_group" "mycelnsg"{
         access                      ="allow"
         protocol                    ="TCP"
         source_port_range           ="*"
-        destination_port_range      ="22"
+        destination_port_range      ="3389"
         source_address_prefix       ="*"
         destination_address_prefix  ="*"
     }
