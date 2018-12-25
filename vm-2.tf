@@ -62,6 +62,16 @@ resource "azurerm_public_ip" "mycelpublicip-2"{
         environment="Windows"
     }
 }
+resource "azurerm_public_ip" "mycelpublicip-3"{
+    name="celpublicip-3"
+    location="eastus"
+    resource_group_name="${azurerm_resource_group.mycelgroup.name}"
+    public_ip_address_allocation="dynamic"
+    
+    tags{
+        environment="Windows"
+    }
+}
 resource "random_id"    "randomid"{
     keepers = {
         resource_group = "${azurerm_resource_group.mycelgroup.name}"
@@ -80,6 +90,22 @@ resource    "azurerm_network_interface" "mycelnic-2"{
         subnet_id="${azurerm_subnet.mycelsubnet.id}"
         private_ip_address_allocation="dynamic"
         public_ip_address_id="${azurerm_public_ip.mycelpublicip-2.id}"
+    }
+    tags{
+        environmet="linux"
+    }
+}
+resource    "azurerm_network_interface" "mycelnic-3"{
+    name="celnic-3"
+    location="eastus"
+    resource_group_name="${azurerm_resource_group.mycelgroup.name}"
+    network_security_group_id="${azurerm_network_security_group.mycelnsg.id}"
+
+    ip_configuration{
+        name="mynicconfiguration"
+        subnet_id="${azurerm_subnet.mycelsubnet.id}"
+        private_ip_address_allocation="dynamic"
+        public_ip_address_id="${azurerm_public_ip.mycelpublicip-3.id}"
     }
     tags{
         environmet="linux"
